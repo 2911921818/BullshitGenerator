@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>狗屁不通文章生成器</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"></a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="page-header">
+        <h1>狗屁不通文章生成器 <small>hello world</small></h1>
+    </div>
+
+    <div class="form-inline">
+        <div class="form-group">
+            <label for="title">标题：</label>
+            <input type="text" class="form-control" name="title" id="title" placeholder="输入标题...">
+        </div>
+        <button type="button" class="btn btn-success" onclick="generate()">生成文章</button>
+    </div>
+
+    <br>
+    <div id="content">
+
+    </div>
+</div>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script>
+
+    function generate() {
+        var title = $("#title").val();
+        console.log(title);
+        if (title == null || title === "") {
+            alert("请输入文章标题");
+        } else {
+            $.ajax({
+                type: "GET",
+                url: "/generate",
+                data: {
+                    title: title
+                },
+                success: function (data) {
+                    $("#content").html(data);
+                },
+                error: function (e) {
+                    console.log(e.responseText);
+                }
+            });
+        }
+    }
+</script>
+</body>
+</html>
