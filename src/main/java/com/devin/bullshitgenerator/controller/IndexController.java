@@ -11,7 +11,7 @@ public class IndexController {
 
     @GetMapping("/index")
     public String index() {
-        return "index";
+        return "index.html";
     }
 
     @GetMapping("/generate")
